@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}Contact Us | Glitz Day Planner{% endblock title %}
+{% block body %}
+<div class='container'>
+<div class='row'>
+<div class="col-md-4 mt-5"></div>
+<div class="col-md-4 mt-5 bg-light">
+<br>
+<h2 class='text-white text-center p-2' style='background-color:#0f0649;'>Contact Us</h2>
+<hr>
+{% for message in messages %}
+<div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+  <strong></strong>{{message}}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+<br>
+<form action='/contact' method='POST'>{% csrf_token %}  
+<input type='text' placeholder='Enter Your Name' required name='name' class='form-control'/>
+<br>
+<input type='email' placeholder='Enter Your E-mail' required name='email' class='form-control'/>
+<br>
+<input type='number' placeholder='Enter Your Phone Number' required name='phone' class='form-control'/>
+<br>
+<textarea type='text' required name='desc'  placeholder="Describe yourself here..." class='form-control'></textarea>
+<br>
+<button type="Submit" class="btn" style='background-color:#0f0649;color:#fff;'>Submit</button></form>
+<br>
+<br>
+<br>
+</div>
+<div class="col-md-4 mt-5"></div>
+</div>
+</div>
+{% endblock body %}

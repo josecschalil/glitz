@@ -1,0 +1,278 @@
+{% load static %}
+<!doctype html>
+
+<html lang="en">
+  <head>
+      <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet'  type='text/css'>
+<link rel="stylesheet" type='text/css' href="{% static '/css/nav_style.css' %}" >
+    <link rel="stylesheet" type='text/css' href="{% static '/css/bootstrap.min.css' %}" >
+
+    <title>Home | Welcome To Glitz</title>
+    {% block head %}  {% endblock head %}
+  </head>
+  <body>
+    <script src="{% static '/js/bootstrap.bundle.min.js' %}"></script>
+{% block body %} 
+<div class='mynav bg-image  text-center shadow-1-strong rounded mb-5 text-white' 
+style="background-image: url('https://mdbcdn.b-cdn.net/img/new/slides/003.jpg');height:600px;">
+<nav class="navbar navbar-expand-lg navbar-dark ">
+  <div class="container-fluid">
+    <a class="navbar-brand px-3" href="#">Glitz</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link "  href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/dashboard">DashBoard</a>
+        </li>
+         <li class="nav-item">
+          <a class="nav-link" href="about">About Us</a>
+        </li>
+         <li class="nav-item">
+          <a class="nav-link" href="contact">Contact Us</a>
+        </li>
+        {% if request.user.is_authenticated %}
+       
+        <li class="nav-item dropdown ">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Welcome {{user.username}}
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="signout">Sign Out</a></li>
+            
+          </ul>
+        </li>
+      </ul>
+      {% endif %}
+      {% if not request.user.is_authenticated %}
+ 
+    </div>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+      <form method="get" action="/signup">
+        <button class="btn btn-outline-light me-md-2" type="submit">Sign Up</button></form>
+        <form method="get" action="/signin">
+             <button class="btn btn-outline-light" type="submit">Login</button></form>
+    </div>
+    {% endif %}
+  </div>
+ 
+</nav>
+<div class="parent-container">
+    <div class="child-container">
+        <h1 style="font-weight: bolder;font-family:'Chango';line-height:1.3em;">Welcome To Glitz - Day Planner</h1>
+        <h4 style="font-weight: bolder;font-family: 'Josefin Slab';line-height:1.3em;">Organise Everything In a Professional Way</h4>
+    </div>
+</div>
+
+</div>
+<br>
+<div class='container'>
+
+<div class="container">
+
+  <div class="row">
+    <div class="col md-4"><div class="container">
+      <blockquote class="quote-box">
+        <p class="quotation-mark">
+          “
+        </p>
+        <p class="quote-text p-4">
+          Better three hours too soon than a minute too late.
+        </p>
+        <hr>
+        <div class="blog-post-actions">
+          <p class="blog-post-bottom pull-left px-4">
+            William Shakespeare
+          </p>
+         <br> 
+        </div>
+      </blockquote>
+  </div></div>
+    <div class="col md-4"><div class="container">
+      <blockquote class="quote-box">
+        <p class="quotation-mark">
+          “
+        </p>
+        <p class="quote-text p-4">
+          He who does not come in time must take what is left.
+        </p>
+        <hr>
+        <div class="blog-post-actions">
+          <p class="blog-post-bottom pull-left px-4">
+            Penn Dutch
+          </p>
+         <br>
+        </div>
+      </blockquote>
+  </div></div>
+    <div class="col md-4">
+      <div class="container">
+        <blockquote class="quote-box">
+          <p class="quotation-mark">
+            “
+          </p>
+          <p class="quote-text p-4">
+            Punctuality is the first and foremost step towards success.
+          </p>
+          <hr>
+          <div class="blog-post-actions">
+            <p class="blog-post-bottom pull-left px-4">
+              Proverb
+            </p>
+         <br>
+          </div>
+        </blockquote>
+    </div>
+    </div>
+  </div>
+</div>
+</div>
+<br>
+<br>
+<div class="container-fluid bg-dark">
+  <br>
+ 
+  <h1 class="text-white text-center" style="font-family:'Yatra One';font-size:3em;">What Do we Offer...</h1>
+  <br>
+
+    <div class="row ">
+ <div class="col-md-1 ">
+  
+ </div>
+ <div class="col-md-10 ">
+
+  <p class="text-white container-fluid text-center" style='line-height:2.5em;'>
+    We are talking about the process of creating and managing to-do lists. Something that was earlier as simple 
+    as picking up a notebook and making a list is now a head-spinning choice of selecting the best task management 
+    software from hundreds of tools out there. Glitz-Day Planner is an efficient task management system and project management 
+    software to gather your thoughts and ideas in one place. You can create tasks, make to-do lists, and make notes to 
+    capture important information so that you don’t have to remember everything.
+   </p>
+   <br>
+   <br>
+ </div>
+ <div class="col-md-1 ">
+
+ </div>
+ </div>
+</div>
+<div class="container-fluid">
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+</div>
+
+<div style='background-color: #5ca4ea;'class="container-fluid ">
+<br>
+<br>
+<br>
+<h1 class='text-center text-white'style="font-weight: bolder;">Achieve peace of mind with Glitz Day Planner</h1>
+<br>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-5 "></div>
+<div class="col-md-2 ">
+  <div class="containerz">
+    <div class="center">
+      <button class="btns">
+        <svg width="180px" height="60px" viewBox="0 0 180 60" class="border">
+          <polyline points="179,1 179,59 1,59 1,1 179,1" class="bg-line" />
+          <polyline points="179,1 179,59 1,59 1,1 179,1" class="hl-line" />
+        </svg>
+        <span >Get Started</span>
+      </button>
+    </div>
+  </div>
+ </div>
+  <br>
+  <br>
+  <div class="col-md-5 "></div>
+</div>
+</div>
+<br>
+<br>
+<br>
+</div>
+
+    <!-- footer -->
+    <div class="footer">
+      <div class="container">
+          <div class="row">
+              <div class="col-md-4 col-xs-12">
+                  <div class="first">
+                      <h4>My Skills</h4>
+                      <p> Analytical Skills</p>
+                      <p> Problem-solving skills</p>
+                      <p> Critical-thinking skills</p>
+                      <p> Detail-oriented</p>
+                      <p> Multitasking</p>
+                      <p> Self-motivated</p>
+                  </div>
+              </div>
+
+              <div class="col-md-4 col-xs-12">
+                  <div class="second">
+                      <h4> Navigate</h4>
+                      <ul>
+                          <li><a href="/">Home</a></li>
+                          <li><a href="/dashboard">Projects</a></li>
+                          <li><a href="about">About</a></li>
+                          <li><a href="contact">Contact</a></li>
+                      </ul>
+                  </div>
+              </div>
+
+              <div class="col-md-4 col-xs-12">
+                  <div class="third">
+                      <h4> Contact</h4>
+                      <ul>
+                          <li>JOSE C S </li>
+                      
+                        <li><i class="far fa-envelope"></i> josecschalil@gmail.com</li>
+                          <li><i class="far fa-envelope"></i>josecschalil@yahoo.com</li>
+
+
+                        <li><i class="fas fa-map-marker-alt"></i> Kerala, India </li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <div class="line"></div>
+                  <div class="second2">
+                      <a href="#"> <i class="fab fa-codepen fa-2x margin"></i></a>
+                      <a href="#"> <i class="fab fa-github fa-2x margin"></i></a>
+                      <a href="#"> <i class="fab fa-linkedin fa-2x margin"></i></a>
+                      <a href="#" ><i class="fab fa-youtube fa-2x margin" ></i></a>
+
+                  </div>
+
+              </div>
+          </div>
+          </div>
+  </div>
+ 
+
+
+{% endblock body %}
+ 
+  </body>
+</html>

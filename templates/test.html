@@ -1,0 +1,155 @@
+{% extends 'main.html' %} 
+  
+      {% block important %}
+       {% block home %}
+      {% block travel %}
+      {% block work %}
+      {% block shopping %}
+      {% block others %}
+      
+        <div class="col my-3">
+          <div class="card h-100">
+  
+            <div class="card-footer">
+            {% if b.finish == "True"%}
+              <small class="text-muted" style="font-weight: bold;font-size:1.4em;text-decoration: line-through;">{{b.name}}</small>
+  
+             
+            </div>
+            <div class="card-body">
+            
+              <p class="card-text" style='text-decoration: line-through;'>Description: {{b.description}}</p>
+              <br>
+              
+              <button class="btn btn-outline-primary "style='text-decoration: line-through;' type="button">Finished</button>
+              <button type="button"  class="btn btn-outline-primary" style='text-decoration: line-through;'>
+  Edit
+</button>
+                 {% else %}
+                  <form action="/dashboard/finish" method="POST">{% csrf_token %}
+         <small class="text-muted" style="font-weight: bold;font-size:1.4em;">{{b.name}}</small>
+  
+             
+            </div>
+            <div class="card-body">
+            <input type='text' style='width:1px;height:1px;visibility:hidden;' value='{{b.id}}' name='setfinish'/>
+              <p class="card-text">Description: {{b.description}}</p>
+              <br>
+             
+                
+              <button class="btn btn-outline-primary " type="submit">Finished</button></form>
+
+              <button type="button"  class="btn btn-outline-primary building-link"  data-desc='{{b.description}}' data-name='{{b.name}}' data-date='{{b.date}}' data-list='{{b.list}}'data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+  Edit
+</button>
+         {% endif %}
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"> Edit Your List</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        
+        <br>
+        <form action='/dashboard/edit' method='POST'>{% csrf_token %}  
+        <textarea type='text' autocomplete="off" placeholder='Enter Your Activity Name' required name='activity' id= 'building-name' class='form-control'></textarea>
+        <br>
+       
+        <textarea type='text' autocomplete="off" placeholder='Enter Description' required name='description' id= 'building-description' class='form-control'></textarea>
+        
+        <label class='labeler'>Do it Before:</label>
+       <input type="text" autocomplete="off" class = 'form-control' name='date' required placeholder='Enter the last Date' id="datepickerer"/>
+
+
+       
+      <label class='labeler'>Select List:</label>
+                  <select class="form-control select2" name='list' id='list'>
+                   <option value="" disabled selected>Select your option</option>
+                 <option value="Important">Important</option> 
+                 <option  value="Home">Home</option> 
+                 <option value="Work">Work</option> 
+                 <option value="Travel">Travel</option> 
+                 <option value="Shopping">Shopping</option> 
+                  </select>
+        
+       
+        
+        <br>
+        <input type='text' style='width:1px;height:1px;visibility:hidden;' value='{{b.id}}' name='tableid'/>
+       
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Update</button></form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary delete-link" data-ids='{{b.id}}' data-bs-toggle="modal" data-bs-target="#staticBackdroper">
+  Delete
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdroper" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" >Are you sure?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      
+      <div class="modal-body">
+        Are you sure you want to delete the selected activity? 
+      </div>
+      <div class="modal-footer">
+      <form action='/dashboard/test' method='POST'>{% csrf_token %}  
+      <var name='var' style='visibility: hidden;'>{{b.id}}</var>
+      <input type='text' style='width:1px;height:1px;visibility:hidden;' value='{{b.id}}' name='vars'/>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        
+        <button type="Submit" class="btn btn-danger">Delete</button></form>
+      </div>
+    </div>
+  </div>
+</div>
+                
+               
+              <br>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">Scehduled to Do Before: {{b.date}}</small>
+            </div>
+          </div>
+        </div>
+     
+
+   <script>
+$('.building-link').click(function(){
+    var myHeading = $(this).data('name');
+    $('#building-name').html(myHeading);
+    $('#building-description').html($(this).data('desc'));
+    $('#building-list').html($(this).data('list'));
+    var listvalue = $(this).data('list');
+    $("#list").val(listvalue);
+    var datevalue = $(this).data('date');
+    $( "#datepickerer" ).datepicker({
+		dateFormat: "dd-mm-yy"
+		,	duration: "fast"
+	}).val(datevalue);
+
+});
+</script>
+
+   <script>
+$('.delete-link').click(function(){
+   
+    $('#delete-confirm').html($(this).data('ids'));
+ 
+});
+</script>
+        {% endblock others %}{% endblock shopping %}{% endblock work %}{% endblock travel %}{% endblock home %}{% endblock important %}

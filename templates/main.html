@@ -1,0 +1,194 @@
+{% extends 'base.html' %}
+{% block title %}DashBoard | Glitz Day Planner {% endblock title %}
+{% load static %}
+{% block body %}
+{% if not request.user.is_authenticated %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong></strong>Please Login And Try Again...
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% else %}
+<div class='container'>
+    <div class='row'>
+    <div class="col-md-4 mt-5"></div>
+    <div class="col-md-4 mt-5 bg-light">
+    <br>
+    <h2 class='text-white text-center p-2' style='background-color:#0f0649;'>Create Your Plan</h2>
+    <hr>
+    {% for message in messages %}
+    <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+      <strong></strong>{{message}}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+    <br>
+    <form action='/dashboard' method='POST'>{% csrf_token %}  
+    <input type='text' autocomplete="off" placeholder='Enter Your Activity Name' required name='activity' class='form-control'/>
+    <br>
+   
+    <textarea type='text' autocomplete="off" placeholder='Enter Description' required name='description' class='form-control'></textarea>
+    
+    <label class='labeler'>Do it Before:</label>
+    <input type="text" autocomplete="off" class = 'form-control' name='date' required placeholder='Enter the last Date' id="datepicker">
+
+  
+  <script>
+$( function() {
+	$( "#datepicker" ).datepicker({
+		dateFormat: "dd-mm-yy"
+		,	duration: "fast"
+	});
+} );
+  </script>
+
+
+ 
+  <label class='labeler'>Select List:</label>
+              <select class="form-control select2" name='list'>
+                <option value="" disabled selected>Select your option</option>
+                 <option>Important</option> 
+                 <option>Home</option> 
+                 <option>Work</option> 
+                 <option>Travel</option> 
+                 <option>Shopping</option> 
+              </select>
+              
+
+    <br>
+    
+    <br>
+    <button type="Submit" class="btn" style='background-color:#0f0649;color:white'>Submit</button></form>
+    <br>
+    <br>
+   
+    </div>
+    <div class="col-md-4 mt-5"></div>
+    </div>
+    </div>
+    <br>
+    <br>
+    <div class="container-fluid " style='background: -webkit-linear-gradient(180deg, #0f0649, #05bccd)'>
+    <br>
+   
+    <div class='container '>
+
+
+ {% if important %}
+         <h3 class='text-white m-2' style='font-weight:bold;'>LIST : IMPORTANT </h3><br>
+              <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for b in important %}
+
+       
+      {% block important %}
+      {% endblock important %}
+
+
+
+        {% endfor %}
+        </div>
+        <hr style='color:white;'>
+        {% endif %}
+
+
+    
+{% if home %}
+         <h3 class='text-white m-2' style='font-weight:bold;'>LIST : HOME </h3><br>
+              <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for b in home %}
+
+       
+      {% block home %}
+      {% endblock home %}
+
+
+
+        {% endfor %}
+        </div>
+        <hr style='color:white;'>
+        {% endif %}
+
+
+       
+{% if work %}
+ <h3 class='text-white m-2' style='font-weight:bold;'>LIST : WORK </h3><br>
+
+        
+              <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for b in work %}
+
+       
+      {% block work %}
+      {% endblock work %}
+
+
+
+        {% endfor %}
+        </div>
+        <hr style='color:white;'>
+{% endif %}
+
+
+  
+{% if shopping %}
+ <h3 class='text-white m-2' style='font-weight:bold;'>LIST : SHOPPING </h3><br>
+
+
+              <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for b in shopping %}
+
+       
+      {% block shopping %}
+      {% endblock shopping %}
+
+
+
+        {% endfor %}
+        </div>
+        <hr style='color:white;'>
+        {% endif %}
+        
+
+
+{% if travel %}
+ <h3 class='text-white m-2' style='font-weight:bold;'>LIST : TRAVEL </h3><br>
+
+
+              <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for b in travel %}
+
+       
+      {% block travel %}
+      {% endblock travel %}
+
+
+
+        {% endfor %}
+        </div>
+       <hr style='color:white;'>
+{% endif %}
+ {% if others %}
+         <h3 class='text-white m-2' style='font-weight:bold;'>LIST : OTHERS </h3><br>
+              <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for b in others %}
+
+       
+      {% block  others %}
+      {% endblock others %}
+
+
+
+        {% endfor %}
+        </div>
+        <hr style='color:white;'>
+        {% endif %}
+
+    </div>
+
+
+
+    
+    </div> 
+    
+    {% endif %}
+
+{% endblock body %}

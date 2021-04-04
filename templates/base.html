@@ -1,0 +1,136 @@
+{% load static %}
+<!doctype html>
+
+<html lang="en">
+  <head>
+   <script src="https://code.jquery.com/jquery-1.12.1.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+      <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet'  type='text/css'>
+<link rel="stylesheet" type='text/css' href="{% static '/css/nav_style.css' %}" >
+    <link rel="stylesheet" type='text/css' href="{% static '/css/bootstrap.min.css' %}" >
+
+    <title>{% block title %}{% endblock title %}</title>
+    {% block head %}  {% endblock head %}
+  </head>
+  <body>
+    <script src="{% static '/js/bootstrap.bundle.min.js' %}"></script>
+
+<div class='mynavs bg-image  text-center shadow-1-strong rounded mb-5 text-white' 
+style="background-image: url('https://images.hdqwalls.com/wallpapers/blurry-abstract.jpg');">
+<nav class="navbar navbar-expand-lg navbar-dark ">
+  <div class="container-fluid">
+    <a class="navbar-brand px-3" href="#">Glitz</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link "  href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/dashboard">DashBoard</a>
+        </li>
+         <li class="nav-item">
+          <a class="nav-link" href="about">About Us</a>
+        </li>
+         <li class="nav-item">
+          <a class="nav-link" href="contact">Contact Us</a>
+        </li>
+       
+      {% if request.user.is_authenticated %}
+       
+        <li class="nav-item dropdown ">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Welcome {{user.username}}
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="signout">Sign Out</a></li>
+            
+          </ul>
+        </li>
+      </ul>
+      {% endif %}
+    
+    </div>
+      {% if not request.user.is_authenticated %}
+  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+  <form method="get" action="/signup">
+ <button class="btn btn-outline-light me-md-2" type="submit">Sign Up</button></form>
+ <form method="get" action="/signin">
+      <button class="btn btn-outline-light" type="submit">Login</button></form>
+</div>
+{% endif %}
+  </div>
+ 
+</nav>
+</div>
+{% block body %}{% endblock body %}
+
+    <!-- footer -->
+    <div class="footer">
+      <div class="container">
+          <div class="row">
+              <div class="col-md-4 col-xs-12">
+                  <div class="first">
+                      <h4>My Skills</h4>
+                      <p> Analytical Skills</p>
+                      <p> Problem-solving skills</p>
+                      <p> Critical-thinking skills</p>
+                      <p> Detail-oriented</p>
+                      <p> Multitasking</p>
+                      <p> Self-motivated</p>
+                  </div>
+              </div>
+
+              <div class="col-md-4 col-xs-12">
+                  <div class="second">
+                      <h4> Navigate</h4>
+                      <ul>
+                          <li><a href="/">Home</a></li>
+                          <li><a href="/dashboard">Projects</a></li>
+                          <li><a href="about">About</a></li>
+                          <li><a href="contact">Contact</a></li>
+                      </ul>
+                  </div>
+              </div>
+
+              <div class="col-md-4 col-xs-12">
+                  <div class="third">
+                      <h4> Contact</h4>
+                      <ul>
+                          <li>JOSE C S </li>
+                      
+                        <li><i class="far fa-envelope"></i> josecschalil@gmail.com</li>
+                          <li><i class="far fa-envelope"></i>josecschalil@yahoo.com</li>
+
+
+                        <li><i class="fas fa-map-marker-alt"></i> Kerala, India </li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <div class="line"></div>
+                  <div class="second2">
+                      <a href="#"> <i class="fab fa-codepen fa-2x margin"></i></a>
+                      <a href="#"> <i class="fab fa-github fa-2x margin"></i></a>
+                      <a href="#"> <i class="fab fa-linkedin fa-2x margin"></i></a>
+                      <a href="#" ><i class="fab fa-youtube fa-2x margin" ></i></a>
+
+                  </div>
+
+              </div>
+          </div>
+          </div>
+  </div>
+</body>
+</html>
