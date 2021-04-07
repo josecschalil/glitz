@@ -55,6 +55,7 @@
 .navbar .navbar-nav{
     margin : 0 auto;
 }
+
 .navbar .nav-item a{
     color: #fff !important;
 	text-transform: uppercase;
@@ -64,6 +65,7 @@
     transition-timing-function: ease;
     transition-delay: 0s;
 }
+
 .navbar h3{
     color: #fff !important;
 	text-transform: uppercase;

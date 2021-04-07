@@ -43,7 +43,7 @@ style="background-image: url('https://images.hdqwalls.com/wallpapers/blurry-abst
           <a class="nav-link" href="contact">Contact Us</a>
         </li>
        
-      {% if request.user.is_authenticated %}
+        {% if request.user.is_authenticated %}
        
         <li class="nav-item dropdown ">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -56,18 +56,23 @@ style="background-image: url('https://images.hdqwalls.com/wallpapers/blurry-abst
         </li>
       </ul>
       {% endif %}
-    
-    </div>
       {% if not request.user.is_authenticated %}
-  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-  <form method="get" action="/signup">
- <button class="btn btn-outline-light me-md-2" type="submit">Sign Up</button></form>
- <form method="get" action="/signin">
-      <button class="btn btn-outline-light" type="submit">Login</button></form>
-</div>
-{% endif %}
+      
+      <li class="nav-item dropdown ">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Authentication
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <li><a class="dropdown-item" href="signin">Sign In</a></li>
+            <hr>
+          <li><a class="dropdown-item" href="signup">Sign Up</a></li>
+        </ul>
+      </li>
+    </ul>
+      {% endif %}
+    </div>
   </div>
- 
+</ul>
 </nav>
 </div>
 {% block body %}{% endblock body %}
@@ -93,7 +98,7 @@ style="background-image: url('https://images.hdqwalls.com/wallpapers/blurry-abst
                       <h4> Navigate</h4>
                       <ul>
                           <li><a href="/">Home</a></li>
-                          <li><a href="/dashboard">Projects</a></li>
+                          <li><a href="/dashboard">Dashboard</a></li>
                           <li><a href="about">About</a></li>
                           <li><a href="contact">Contact</a></li>
                       </ul>

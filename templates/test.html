@@ -39,7 +39,7 @@
                 
               <button class="btn btn-outline-primary " type="submit">Finished</button></form>
 
-              <button type="button"  class="btn btn-outline-primary building-link"  data-desc='{{b.description}}' data-name='{{b.name}}' data-date='{{b.date}}' data-list='{{b.list}}'data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+              <button type="button"  class="btn btn-outline-primary building-link" data-updateid='{{b.id}}' data-desc='{{b.description}}' data-name='{{b.name}}' data-date='{{b.date}}' data-list='{{b.list}}'data-bs-toggle="modal" data-bs-target="#staticBackdrop">
   Edit
 </button>
          {% endif %}
@@ -78,7 +78,7 @@
        
         
         <br>
-        <input type='text' style='width:1px;height:1px;visibility:hidden;' value='{{b.id}}' name='tableid'/>
+        <textarea type='text' style='width:1px;height:1px;visibility:hidden;'  id='update-id' name='tableid'></textarea>
        
       </div>
       <div class="modal-footer">
@@ -108,11 +108,10 @@
       </div>
       <div class="modal-footer">
       <form action='/dashboard/test' method='POST'>{% csrf_token %}  
-      <var name='var' style='visibility: hidden;'>{{b.id}}</var>
-      <input type='text' style='width:1px;height:1px;visibility:hidden;' value='{{b.id}}' name='vars'/>
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <textarea type='text'  style='width:1px;height:1px;visibility:hidden;' name='ids' id= 'delete-id'></textarea>
         
-        <button type="Submit" class="btn btn-danger">Delete</button></form>
+        <button type="Submit" class="btn btn-danger" id='delete-id'>Delete</button></form>
       </div>
     </div>
   </div>
@@ -132,6 +131,7 @@
 $('.building-link').click(function(){
     var myHeading = $(this).data('name');
     $('#building-name').html(myHeading);
+    $('#update-id').html($(this).data('updateid'));
     $('#building-description').html($(this).data('desc'));
     $('#building-list').html($(this).data('list'));
     var listvalue = $(this).data('list');
@@ -145,11 +145,10 @@ $('.building-link').click(function(){
 });
 </script>
 
-   <script>
-$('.delete-link').click(function(){
-   
-    $('#delete-confirm').html($(this).data('ids'));
- 
-});
-</script>
+<script>
+  $('.delete-link').click(function(){
+      $('#delete-id').html($(this).data('ids'));
+  
+  });
+  </script>
         {% endblock others %}{% endblock shopping %}{% endblock work %}{% endblock travel %}{% endblock home %}{% endblock important %}

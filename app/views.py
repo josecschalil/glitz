@@ -154,7 +154,7 @@ def contact(request):
 def dashboards(request):
     
     if request.method =='POST':
-        user_id=request.POST.get('vars')
+        user_id=request.POST.get('ids')
         print(user_id)
         a = activities.objects.filter( id=user_id)
         a.delete()
