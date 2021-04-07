@@ -87,7 +87,6 @@ def signin(request):
         myuser=authenticate(username=uname,password=pass1)
         if myuser is not None:
             login(request,myuser)
-            messages.success(request,'Login Success')
             return redirect('/')
         else:
             messages.warning(request,'Invalid Credentials')
@@ -120,7 +119,6 @@ def signup(request):
         myuser.first_name=fname
         myuser.last_name=lname
         myuser.save()
-        messages.success(request,'SignUp Successful')
         myuser=authenticate(username=uname,password=pass1)
         login(request,myuser)
         return redirect('/')
@@ -128,7 +126,6 @@ def signup(request):
 
 def signout(request):
     logout(request)
-    messages.success(request,'LogOut Successful')
     return redirect('/')
 
 def contact(request):
